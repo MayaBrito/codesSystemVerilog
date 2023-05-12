@@ -21,7 +21,7 @@ module RegistradorParaleloSerial (
    	else begin
       if (SEL) 
         // Modo Serial
-        reg_data <= {reg_data[2:0], Din_serie};
+        reg_data <= {Din_serie, reg_data[BITS-1:1]};
       else 
         // Modo Paralelo
         reg_data <= Din;
