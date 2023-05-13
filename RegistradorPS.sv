@@ -7,27 +7,20 @@
 parameter BITS = 4;
 
 module RegistradorParaleloSerial (
-  input logic clk, reset, SEL,
-  input logic [BITS-1:0] Din_serie,
+  input logic clk, reset, SEL, Din_serie,
   input logic [BITS-1:0] Din,
   output logic [BITS-1:0] Dout
 );
 
-  reg [BITS-1:0] reg_data;
-
   always @(posedge clk or posedge reset) begin
     if (reset)
-      reg_data <= 4'b0;
-   	else begin
+      Dout <= 4'b0;
+   else begin
       if (SEL) 
-        // Modo Serial
-        reg_data <= {Din_serie, reg_data[BITS-1:1]};
+        Dout <= {Din_serie, Dout[BITS-1:1]};
       else 
-        // Modo Paralelo
-        reg_data <= Din;
+        Dout <= Din;
     end
   end
-
-  assign Dout = reg_data;
-
+  
 endmodule
