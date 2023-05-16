@@ -11,13 +11,13 @@ module contadorUpDown(
   output logic [BITS-1:0]count);
   
   initial begin
-    count <= 0;
+    count <= ((1<<BITS)-1);
   end
 		
   always_ff @(posedge reset or posedge clk) begin
      
     if (reset)
-      count <= 0; 
+      count <= ((1<<BITS)-1); 
     else begin 
       if (sel) 
         count <= count + 1; // UP
