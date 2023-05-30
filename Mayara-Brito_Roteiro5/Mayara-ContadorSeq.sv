@@ -11,6 +11,8 @@ module contador8421 (
   input logic [BITS_COUNT-1:0] data_in,
   output logic [BITS_COUNT-1:0] count);
   
+  assign load <= 1;
+  
   always_ff @(posedge clk) begin
     if(reset)
       count <= 0;
