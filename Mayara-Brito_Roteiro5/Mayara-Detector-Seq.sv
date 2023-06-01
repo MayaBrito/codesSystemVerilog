@@ -21,25 +21,26 @@ module FSM_ports123(
   input logic [bits-1:0] in_port, 
   output alarm);
   
+  // Definindo os possíveis estados para o sistema. 
   enum logic [size - 1 : 0] {port1,port2,port3} state;
     
   always_ff @ (posedge clk)
     if (reset) state <= port1;
-     else
-		unique case (state)
-			port1:
-              if (in_port == 2)
-					state <= port2;
-          	  else 
-					state <= port1;
+    else
+	unique case (state)
+	    port1:
+                if (in_port == 2)
+		    state <= port2;
+          	else 
+		    state <= port1;
             port2:
-              if (in_port == 3)
+                if (in_port == 3)
                     state <= port3;
-              else 
+                else 
                     state <= port1;
             port3:
                     state <= port1;
-		endcase
+	endcase
 
   always_comb alarm <= (state == port3);
  
