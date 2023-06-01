@@ -11,15 +11,16 @@
 	// (sel = 1) o contador funcionará de maneira crescente.
 	// (sel = 0) o contador funcionará de maneira descrescente.
 
+// reset --> Representa a ação de reiniciar o contador, para continuar um novo processo de contagem. 
+
 parameter BITS = 4;
 
 module contadorUpDown(
 	input logic reset, clk, sel,
   output logic [BITS-1:0]count);
   
-  initial begin
-    count <= ((1<<BITS)-1);
-  end
+  // Inicializa o sistema com o contador já com o valor máximo representado pela quantidade de bits definida.
+  initial count <= ((1<<BITS)-1); 
 		
   always_ff @(posedge reset or posedge clk) begin
      
